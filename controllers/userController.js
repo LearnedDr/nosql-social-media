@@ -1,19 +1,19 @@
+const User = require('../models/User')
 
-module.exports = {
+const userController = {
       // Get all users
   async getUsers(req, res) {
+    console.log("line 6 userController", res)
     try {
       const users = await User.find();
+      
 
-      const userObj = {
-        // students,
-        // headCount: await headCount(),
-      };
-
-      res.json(userObj);
+      res.json(users);
     } catch (err) {
       console.log(err);
       return res.status(500).json(err);
     }
   },
 }
+
+module.exports = userController

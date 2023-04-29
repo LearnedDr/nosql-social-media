@@ -1,5 +1,4 @@
 const { Schema, model } = require('mongoose');
-// const ThoughtSchema = require('./Thought');
 
 const userSchema = new Schema(
     {
@@ -13,36 +12,24 @@ const userSchema = new Schema(
             type: String,
             required: true,
             unique: true,
-            //   * Must match a valid email address (look into Mongoose's matching validation)
-            // /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
+            match: [/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i]
         },
-        // thoughts: {
-
-        // }
+        thoughts: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: "Thought"
+            }
+        ],
+        friends: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: "User"
+            }
+        ]
 
     }
 )
 
-
-// **User**:
-
-// * `username`
-//   * String
-//   * Unique
-//   * Required
-//   * Trimmed
-// * `email`
-//   * String
-//   * Required
-//   * Unique
-//   * Must match a valid email address (look into Mongoose's matching validation)
-
-// * `thoughts`
-//   * Array of `_id` values referencing the `Thought` model
-
-// * `friends`
-//   * Array of `_id` values referencing the `User` model (self-reference)
-
-const User = model('user', userSchema);
+const User = model('User', userSchema);
 
 module.exports = User;
