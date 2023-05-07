@@ -20,7 +20,7 @@ No installation
 GL HF
 
 ## Contribution
-Spread the good word
+Mia Ciasullo
 
 ## Test
 No
